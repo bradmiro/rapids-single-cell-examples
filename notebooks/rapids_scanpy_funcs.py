@@ -526,7 +526,7 @@ def sum_csr_matrix(client, csr_matrix, axis=0):
     '''
     Implements sum operation for dask array when the backend is cupy sparse csr matrix
     '''
-    client = dask.distributed.default_client()
+#     client = dask.distributed.default_client()
 
     def __sum(x):
         return x.sum(axis=axis)
@@ -627,7 +627,7 @@ def read_with_filter(client,
                    shape=(actual_batch_size, total_cols)))
 
     dask_sparse_arr =  dask.array.concatenate(dls)
-    dask_sparse_arr = dask_sparse_arr.persist()
+    #dask_sparse_arr = dask_sparse_arr.persist()
 
     # Filter by genes (i.e. cell count per gene)
     gene_wise_cell_cnt = sum_csr_matrix(client, dask_sparse_arr)
